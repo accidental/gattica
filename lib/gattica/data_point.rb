@@ -37,10 +37,10 @@ module Gattica
       end
       
       # output all dimensions
-      @dimensions.map {|d| d.value}.each { |c| columns << c }
+      @dimensions.map {|d| d.first_value}.each { |c| columns << c }
       
       # output all metrics
-      @metrics.map {|m| m.value}.each { |c| columns << c }
+      @metrics.map {|m| m.first_value}.each { |c| columns << c }
 
       output = CSV.generate_line(columns)      
       return output
