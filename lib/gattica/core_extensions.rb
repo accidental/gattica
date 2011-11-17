@@ -7,11 +7,11 @@ class Hash
     end.sort * '&'
   end
   
-  def key
+  def first_key
     self.keys.first if self.length == 1
   end
 
-  def value
+  def first_value
     self.values.first if self.length == 1
   end
   

@@ -34,8 +34,8 @@ module Gattica
       end
       
       unless @points.empty?   # if there was at least one result
-        @points.first.dimensions.map {|d| d.key}.each { |c| columns << c }
-        @points.first.metrics.map {|m| m.key}.each { |c| columns << c }
+        @points.first.dimensions.map {|d| d.first_key}.each { |c| columns << c }
+        @points.first.metrics.map {|m| m.first_key}.each { |c| columns << c }
       end
       
       output = CSV.generate_line(columns) + "\n"
