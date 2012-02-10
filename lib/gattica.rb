@@ -44,7 +44,7 @@ module Gattica
     SERVER = 'www.google.com'
     PORT = 443
     SECURE = true
-    DEFAULT_ARGS = { :start_date => nil, :end_date => nil, :dimensions => [], :metrics => [], :filters => [], :sort => [] }
+    DEFAULT_ARGS = { :start_date => nil, :end_date => nil, :dimensions => [], :metrics => [], :filters => [], :sort => [], :filters_join_method => 'AND' }
     DEFAULT_OPTIONS = { :email => nil, :password => nil, :token => nil, :profile_id => nil, :debug => false, :headers => {}, :logger => Logger.new(STDOUT) }
     FILTER_METRIC_OPERATORS = %w{ == != > < >= <= }
     FILTER_DIMENSION_OPERATORS = %w{ == != =~ !~ =@ ~@ }
@@ -279,7 +279,7 @@ module Gattica
           else
             raise GatticaError::InvalidFilter, "The filter '#{filter}' is invalid. Filters should look like 'browser == Firefox' or 'browser==Firefox'"
           end
-        end.join(';')
+        end.join(args[:filters_join_method] == 'OR' ? ',' : ';')
       end
       return output
     end
