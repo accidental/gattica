@@ -217,6 +217,9 @@ module Gattica
     
     def do_http_get(query_string)
       response, data = @http.get(query_string, @headers)
+
+      # 1.9 fix.
+      data ||= response.body
       
       # error checking
       if response.code != '200'
