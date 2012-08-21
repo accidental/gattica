@@ -20,6 +20,10 @@ module Gattica
       options = OPTIONS.merge(user.to_h)
       
       response, data = http.post(SCRIPT_NAME, options.to_query, HEADERS)
+
+      # 1.9 fix.
+      data ||= response.body
+
       if response.code != '200'
         case response.code
         when '403'
